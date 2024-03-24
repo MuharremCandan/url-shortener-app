@@ -1,0 +1,25 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: url-shortner-postgre-container
+    environment:
+      POSTGRES_HOST: 0.0.0.0
+      POSTGRES_DB: url-shortner
+      POSTGRES_USER: url-shortner
+      POSTGRES_PASSWORD: url-shortner
+    networks:
+      - mynet
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    
+
+volumes:
+  postgres_data:
+
+networks:
+  mynet:
+    driver: bridge
